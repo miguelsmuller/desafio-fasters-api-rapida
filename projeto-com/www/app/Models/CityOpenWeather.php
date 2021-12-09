@@ -12,13 +12,12 @@ class CityOpenWeather extends City
     protected $api_key = null;
 
     function __construct($id) {
-        $this->api_key = getenv('KEY_OPEN_WEATHER');
+        $this->api_key = $_ENV['KEY_OPEN_WEATHER'];
         
         parent::__construct($id);
     }
 
     function getMeasurementValue(){
-        $key = getenv("REMOTE_ADDR");
 
         $url = sprintf(
             "http://api.openweathermap.org/data/2.5/weather?id=%s&units=metric&appid=%s", 

@@ -1,11 +1,11 @@
 <?php
-use Controller\Main;
+use Controllers\MainController;
 use Pecee\SimpleRouter\SimpleRouter;
 use Pecee\Http\Request;
 
-SimpleRouter::get('/', [Main::class, 'getIndex']);
-SimpleRouter::get('/{city}', [Main::class, 'getMeasurement'])->where(['city' => '[0-9]+']);
+SimpleRouter::get('/', [MainController::class, 'getDefault']);
+SimpleRouter::get('city/{city}', [MainController::class, 'getMeasurement'])->where(['city' => '[0-9]+']);
 
-SimpleRouter::error(function(Request $request, \Exception $e) {
-    Main::getErro($e->getCode());
+SimpleRouter::error(function(Request $request) {
+    MainController::getDefault();
 });

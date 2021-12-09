@@ -8,12 +8,13 @@
     "require": {
         "guzzlehttp/guzzle": "^7.0",
         "pecee/simple-router": "4.3.7.2",
-        "nesbot/carbon": "^2.55"
+        "nesbot/carbon": "^2.55",
+        "vlucas/phpdotenv": "^5.4"
     },
     "autoload": {
         "psr-4": {
-            "Domain\\": "domain/",
-            "Controller\\": "controller/"
+            "Models\\": "models/",
+            "Controllers\\": "controllers/"
         }
     }
 }

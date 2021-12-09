@@ -1,22 +1,15 @@
 <?php
-namespace Controller;
+namespace Controllers;
 
 use Pecee\SimpleRouter\SimpleRouter;
 use Pecee\Http\Response;
 use Pecee\Http\Request;
 
-use Domain\CityDataBase;
-use Domain\CityOpenWeather;
+use Models\CityDataBase;
+use Models\CityOpenWeather;
 
-class Main
+class MainController
 {
-	public function getIndex(){
-		SimpleRouter::response()->json([
-			'erro' => 'Parameter not found',
-			'message' => 'try put city name in request url'
-		]);
-	}
-
 	public function getMeasurement($id){
 		$response = new CityDataBase($id);
 
@@ -31,16 +24,9 @@ class Main
 		]);
 	}
 
-	public function getErro($erro){   
-		if ($erro == 404) {
-			$msg = "Not Found";
-		} elseif($erro == 403) {
-			$msg = "Forbidden";
-		}
-		
+	public function getDefault(){   
 		SimpleRouter::response()->json([
-			'erro' => 'Erro',
-			'message' => $msg
+			'error' => 'INVALID_ROUTE'
 		]);
 	}
 }

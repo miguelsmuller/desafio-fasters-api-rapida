@@ -14,10 +14,11 @@ Foram feitas 2 soluções para o problema apresentado. Um solução NÃO UTILIZA
 Qualquer uma das soluções pode ser rodada com o comando abaixo e acessada através do *http://localhost:8000*
 
 ```sh
-# Iniciar o buil-in server
+# Iniciar o buil-in server inside {PROJECT}/www/ folder
 php -S localhost:8000 -t public
 ```
 
+`composer dumpautoload -o`
 
 
 ## **Docker and DataBase**

@@ -1,5 +1,5 @@
 <?php
-namespace Domain;
+namespace Models;
 
 abstract class City
 {

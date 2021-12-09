@@ -1,7 +1,7 @@
 <?php
-namespace Domain;
+namespace Models;
 
-use Domain\City;
+use Models\City;
 use Carbon\Carbon;
 
 class CityDataBase extends City
@@ -22,16 +22,15 @@ class CityDataBase extends City
 		$sql_query = "SELECT * FROM cities WHERE id=%u";
 		$sql_query = sprintf($sql_query, $this->getCityId());
 
-		$queryResult = $this->db->query($sql_query);
+		$data = $this->db->query($sql_query);
+		$data = $data->fetch_all(MYSQLI_ASSOC);
 
-		if ($queryResult->num_rows >= 1) {
-			$data = $queryResult->fetch_all(MYSQLI_ASSOC);
-
+		if (sizeof($data) >= 1) {	
 			$currentDate = Carbon::now();
 			$measurementDate = Carbon::createFromFormat('Y-m-d H:i:s', $data[0]['date']);
 
 			$this->setCityName($data[0]['name']);
-			$this->setMeasurementDate($currentDate);  
+			$this->setMeasurementDate($data[0]['date']);  
 			$this->setSource("DataBase");  
 
 			if ($currentDate->diffInMinutes($measurementDate) <= 20) {

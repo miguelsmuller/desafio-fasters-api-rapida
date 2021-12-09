@@ -1,7 +1,7 @@
 <?php
-namespace Domain;
+namespace Models;
 
-use Domain\City;
+use Models\City;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -12,15 +12,17 @@ class CityOpenWeather extends City
     protected $api_key = null;
 
     function __construct($id) {
-        $this->api_key = getenv('KEY_OPEN_WEATHER');
+        $this->api_key = $_ENV['KEY_OPEN_WEATHER'];
         $this->db = mysqli_connect("127.0.0.1", "admin", "admin", "fasters");
-        
+
         parent::__construct($id);
     }
 
     function getMeasurementValue(){
         $url = "http://api.openweathermap.org/data/2.5/weather?id=%s&units=metric&appid=%s";
-        $url = sprintf($url, $this->getCityId(), $this->key);
+        $url = sprintf($url, $this->getCityId(), $this->api_key);
+
+        
 
         $client =  new Client(['http_errors' => false]);
         $response = $client->request('GET', $url, ['connect_timeout' => 3.5]);    
