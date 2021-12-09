@@ -1,0 +1,19 @@
+{
+    "authors": [
+        {
+            "name": "Seu nome",
+            "email": "seu-email@seu-dominio.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "pecee/simple-router": "4.3.7.2",
+        "nesbot/carbon": "^2.55"
+    },
+    "autoload": {
+        "psr-4": {
+            "Domain\\": "domain/",
+            "Controller\\": "controller/"
+        }
+    }
+}
